@@ -70,21 +70,25 @@ void spinOuttake() {
 
 // Autonomouses / autonomi / autons or something
 void topLeftOrBottomRight() {
-  Drivetrain.driveFor(5, inches);
-  
-  Drivetrain.turnFor(-60, degrees);
-  Drivetrain.driveFor(15, inches);
-
-  Drivetrain.turnFor(17, degrees);
-  Drivetrain.driveFor(50, inches);
+  /**
+   * wait for match loads
+   * turn towards other side
+   * push triballs without crossing
+  */
+    wait(8, sec);
+    Drivetrain.turnFor(-60, degrees);
+    Drivetrain.driveFor(10, inches);
 }
 
 void topRightOrBottomLeft() {
-  Drivetrain.turnFor(55, degrees);
-  Drivetrain.driveFor(30, inches);
-  
-  Drivetrain.turnFor(-120, degrees);
-  Drivetrain.driveFor(20, inches);
+  /**
+   * wait for match loads
+   * turn towards other side
+   * push triballs without crossing
+  */
+    wait(8, sec);
+    Drivetrain.turnFor(60, degrees);
+    Drivetrain.driveFor(10, inches);
 }
 
 void preAutonomous(void) {

@@ -15,9 +15,6 @@ extern motor_group LeftWheels;
 extern motor_group RightWheels;
 
 extern motor Intake;
-extern double ARM_EXTENSION;
-
-extern motor Intake;
 
 extern drivetrain Drivetrain;
 
