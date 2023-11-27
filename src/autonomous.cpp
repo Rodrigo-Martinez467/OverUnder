@@ -4,12 +4,9 @@ using namespace vex;
 using namespace std;
 
 Config config;
-bool confirmed = false;
 canvas Canvas;
 
 void switchAuton_cb() {
-  if (confirmed) return;
-  
   switch (config) {
     default:
     case TOP_LEFT:
@@ -25,10 +22,6 @@ void switchAuton_cb() {
       config = TOP_LEFT;
       break;
   }
-}
-
-void confirm_cb() {
-  confirmed = true;
 }
 
 string getDescription(Config config) {
@@ -96,7 +89,6 @@ void topRightOrBottomLeft() {
 
 void preAutonomous(void) {
   config = TOP_LEFT;
-  confirmed = false;
 
   Drivetrain.setDriveVelocity(40.0, percent);
   Intake.setVelocity(80.0, percent);
@@ -107,11 +99,10 @@ void preAutonomous(void) {
   Canvas = canvas();
 
   screenButton switchAutonButton = screenButton(60, 60, 120, blue, switchAuton_cb, text("Switch Auton", 0, 0, mono40, white));
-  screenButton confirmButton = screenButton(300, 60, 120, green, confirm_cb, text("Confirm", 0, 0, mono40, white));
 
   text description = text(getDescription(config), 0, 130, mono40, white, "desc");
 
-  Canvas.addElements( switchAutonButton, confirmButton, description );
+  Canvas.addElements( switchAutonButton, description );
 
   screenPressed_cb();
 
