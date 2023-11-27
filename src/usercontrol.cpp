@@ -13,7 +13,7 @@ void userControl(void) {
     if (Controller.ButtonR2.pressing()) {
       Intake.spin(fwd);
     } else if (Controller.ButtonL2.pressing()) {
-      Intake.spin(fwd);
+      Intake.spin(reverse);
     } else {
       Intake.stop();
     }

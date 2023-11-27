@@ -76,8 +76,11 @@ void topLeftOrBottomRight() {
    * push triballs without crossing
   */
     wait(8, sec);
-    Drivetrain.turnFor(-60, degrees);
-    Drivetrain.driveFor(10, inches);
+    Drivetrain.driveFor(4, inches);
+    Drivetrain.turnFor(-150, degrees);
+
+    Drivetrain.setDriveVelocity(80.0, percent);
+    Drivetrain.driveFor(60, inches);
 }
 
 void topRightOrBottomLeft() {
@@ -87,14 +90,19 @@ void topRightOrBottomLeft() {
    * push triballs without crossing
   */
     wait(8, sec);
-    Drivetrain.turnFor(60, degrees);
-    Drivetrain.driveFor(10, inches);
+    Drivetrain.driveFor(4, inches);
+    Drivetrain.turnFor(150, degrees);
+
+    Drivetrain.setDriveVelocity(80.0, percent);
+    Drivetrain.driveFor(60, inches);
 }
 
 void preAutonomous(void) {
   config = TOP_LEFT;
 
+  // default motor speeds
   Drivetrain.setDriveVelocity(40.0, percent);
+  Drivetrain.setTurnVelocity(50.0, percent);
   Intake.setVelocity(80.0, percent);
   
   // actions to do when the program starts
@@ -103,18 +111,16 @@ void preAutonomous(void) {
   Canvas = canvas();
 
   screenButton switchAutonButton = screenButton(60, 60, 120, blue, switchAuton_cb, text("Switch Auton", 0, 0, mono40, white));
-
   text description = text(getDescription(config), 0, 130, mono40, white, "desc");
 
   Canvas.addElements( switchAutonButton, description );
 
   screenPressed_cb();
-
   Brain.Screen.pressed(screenPressed_cb);
 }
 
 void autonomous(void) {
   Brain.Screen.clearScreen();
   // place automonous code here
-  playAuton(config);
+  playAuton(TOP_LEFT /*config*/);
 }
