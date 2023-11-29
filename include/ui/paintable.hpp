@@ -20,7 +20,7 @@ namespace vex {
                 this->x = x;
                 this->y = y;
                 this->size = size;
-                this->color = color;
+                this->setColor(color);
             }
             
             virtual void onScreenPressed() {
@@ -29,6 +29,10 @@ namespace vex {
 
             int x, y, size;
             color color;
+
+            void setColor(class color color) {
+                this->color = color;
+            }
             
             virtual void paint() {}
 

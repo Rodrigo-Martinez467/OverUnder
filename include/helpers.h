@@ -9,12 +9,16 @@
 using namespace vex;
 using namespace std;
 
+extern bool skills;
+
 void preAutonomous();
 void autonomous(void);
 void userControl(void);
 
 void topLeftOrBottomRight();
 void topRightOrBottomLeft();
+void topLeftOrBottomRightSkills();
+void topRightOrBottomLeftSkills();
 
 void screenPressed_cb();
 

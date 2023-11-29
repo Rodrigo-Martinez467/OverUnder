@@ -5,6 +5,7 @@ using namespace std;
 
 Config config;
 canvas Canvas;
+bool skills;
 
 void switchAuton_cb() {
   switch (config) {
@@ -24,12 +25,16 @@ void switchAuton_cb() {
   }
 }
 
+void toggleSkills() {
+  skills = !skills;
+}
+
 string getDescription(Config config) {
   switch (config) {
     case TOP_LEFT: return "Top Left";
     case TOP_RIGHT: return "Top Right";
     case BOTTOM_LEFT: return "Bottom Left";
-    case BOTTOM_RIGHT: return "Bottom RIght";
+    case BOTTOM_RIGHT: return "Bottom Right";
   };
 }
 
@@ -51,11 +56,13 @@ void playAuton(Config config) {
     default:
     case TOP_LEFT:
     case BOTTOM_RIGHT:
-      topLeftOrBottomRight();
+      if (skills) topLeftOrBottomRightSkills();
+      else topLeftOrBottomRight();
       break;
     case TOP_RIGHT:
     case BOTTOM_LEFT:
-      topRightOrBottomLeft();
+      if (skills) topRightOrBottomLeftSkills();
+      else topRightOrBottomLeft();
       break;
   }
 }
@@ -68,36 +75,32 @@ void spinOuttake() {
   Intake.spinFor(reverse, 500, msec);
 }
 
-// Autonomouses / autonomi / autons or something
+// Autons
 /**
- * face backwards
- * wait for match loads
- * turn towards other side
- * push triballs without crossing
+ * drive forward
 */
 void topLeftOrBottomRight() {
-  // wait(8, sec);
-  Drivetrain.driveFor(reverse, 4, inches);
-  Drivetrain.turnFor(-150, degrees);
-
-  Drivetrain.setDriveVelocity(80.0, percent);
-  Drivetrain.driveFor(reverse, 60, inches);
 }
 
 void topRightOrBottomLeft() {
-// wait(8, sec);
-  Drivetrain.driveFor(reverse, 4, inches);
-  Drivetrain.turnFor(150, degrees);
+}
 
-  Drivetrain.setDriveVelocity(80.0, percent);
-  Drivetrain.driveFor(reverse, 60, inches);
+// Skills
+void topLeftOrBottomRightSkills() {
+  wait(30, sec);
+  Drivetrain.driveFor(60, inches);
+}
+
+void topRightOrBottomLeftSkills() {
+  Drivetrain.driveFor(60, inches);
 }
 
 void preAutonomous(void) {
   config = TOP_LEFT;
+  skills = false;
 
   // default motor speeds
-  Drivetrain.setDriveVelocity(40.0, percent);
+  Drivetrain.setDriveVelocity(80.0, percent);
   Drivetrain.setTurnVelocity(50.0, percent);
   Intake.setVelocity(80.0, percent);
   
@@ -106,8 +109,9 @@ void preAutonomous(void) {
   
   Canvas = canvas();
 
-  screenButton switchAutonButton = screenButton(60, 60, 120, blue, switchAuton_cb, text("Switch Auton", 0, 0, mono40, white));
-  text description = text(getDescription(config), 0, 130, mono40, white, "desc");
+  screenButton switchAutonButton = screenButton(60, 60, 120, blue, switchAuton_cb, text("Switch Auton", 0, 0, mono40, blue));
+  screenButton skillsButton = screenButton(120, 60, 120, red, toggleSkills, text("Toggle Skills", 0, 180, mono40, red));
+  text description = text(getDescription(config), 0, 130, mono40, black, "desc");
 
   Canvas.addElements( switchAutonButton, description );
 

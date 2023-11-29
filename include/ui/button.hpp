@@ -20,11 +20,11 @@ namespace vex {
             }
             void onScreenPressed() {
                 this->getPressed(Brain.Screen.xPosition(), Brain.Screen.yPosition());
-                this->paint();
-
                 if (this->isPressed()) {
                     this->action();
                 }
+                
+                this->paint();
             }
 
             void paint() {
