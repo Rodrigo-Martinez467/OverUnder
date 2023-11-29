@@ -69,32 +69,28 @@ void spinOuttake() {
 }
 
 // Autonomouses / autonomi / autons or something
+/**
+ * face backwards
+ * wait for match loads
+ * turn towards other side
+ * push triballs without crossing
+*/
 void topLeftOrBottomRight() {
-  /**
-   * wait for match loads
-   * turn towards other side
-   * push triballs without crossing
-  */
-    wait(8, sec);
-    Drivetrain.driveFor(4, inches);
-    Drivetrain.turnFor(-150, degrees);
+  // wait(8, sec);
+  Drivetrain.driveFor(reverse, 4, inches);
+  Drivetrain.turnFor(-150, degrees);
 
-    Drivetrain.setDriveVelocity(80.0, percent);
-    Drivetrain.driveFor(60, inches);
+  Drivetrain.setDriveVelocity(80.0, percent);
+  Drivetrain.driveFor(reverse, 60, inches);
 }
 
 void topRightOrBottomLeft() {
-  /**
-   * wait for match loads
-   * turn towards other side
-   * push triballs without crossing
-  */
-    wait(8, sec);
-    Drivetrain.driveFor(4, inches);
-    Drivetrain.turnFor(150, degrees);
+// wait(8, sec);
+  Drivetrain.driveFor(reverse, 4, inches);
+  Drivetrain.turnFor(150, degrees);
 
-    Drivetrain.setDriveVelocity(80.0, percent);
-    Drivetrain.driveFor(60, inches);
+  Drivetrain.setDriveVelocity(80.0, percent);
+  Drivetrain.driveFor(reverse, 60, inches);
 }
 
 void preAutonomous(void) {
