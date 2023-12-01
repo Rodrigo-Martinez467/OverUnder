@@ -52,17 +52,15 @@ void screenPressed_cb() {
 }
 
 void playAuton(Config config) {
-  switch (config) {         
+  switch (config) {
     default:
     case TOP_LEFT:
     case BOTTOM_RIGHT:
-      if (skills) topLeftOrBottomRightSkills();
-      else topLeftOrBottomRight();
+      topLeftOrBottomRight();
       break;
     case TOP_RIGHT:
     case BOTTOM_LEFT:
-      if (skills) topRightOrBottomLeftSkills();
-      else topRightOrBottomLeft();
+      topRightOrBottomLeft();
       break;
   }
 }
@@ -86,13 +84,13 @@ void topRightOrBottomLeft() {
 }
 
 // Skills
-void topLeftOrBottomRightSkills() {
-  wait(30, sec);
-  Drivetrain.driveFor(60, inches);
-}
+void programmingSkills() {
+  for (int i = 0; i < 4; i++) {
+    wait(8, sec);
 
-void topRightOrBottomLeftSkills() {
-  Drivetrain.driveFor(60, inches);
+    Drivetrain.driveFor(fwd, 45, inches);
+    Drivetrain.driveFor(reverse, 45, inches);
+  }
 }
 
 void preAutonomous(void) {
@@ -109,9 +107,9 @@ void preAutonomous(void) {
   
   Canvas = canvas();
 
-  screenButton switchAutonButton = screenButton(60, 60, 120, blue, switchAuton_cb, text("Switch Auton", 0, 0, mono40, blue));
-  screenButton skillsButton = screenButton(120, 60, 120, red, toggleSkills, text("Toggle Skills", 0, 180, mono40, red));
-  text description = text(getDescription(config), 0, 130, mono40, black, "desc");
+  screenButton switchAutonButton = screenButton( 60, 60, 120, blue, switchAuton_cb, text( "Switch Auton", 0, 0, mono40, blue ) );
+  screenButton skillsButton = screenButton( 120, 60, 120, red, toggleSkills, text( "Toggle Skills", 0, 180, mono40, red ) );
+  text description = text( getDescription(config), 0, 130, mono40, black, "desc" );
 
   Canvas.addElements( switchAutonButton, description );
 
@@ -122,5 +120,9 @@ void preAutonomous(void) {
 void autonomous(void) {
   Brain.Screen.clearScreen();
   // place automonous code here
-  playAuton(TOP_LEFT /*config*/);
+  skills = true;
+  if (skills)
+    programmingSkills();
+  else
+    playAuton(TOP_LEFT /*config*/);
 }
