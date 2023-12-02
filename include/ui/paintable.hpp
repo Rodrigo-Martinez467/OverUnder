@@ -3,7 +3,6 @@
 
 #include "vex_color.h"
 #include "helpers.h"
-#include <array>
 
 using namespace std;
 

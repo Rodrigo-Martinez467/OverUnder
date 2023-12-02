@@ -40,15 +40,8 @@ string getDescription(Config config) {
 
 void screenPressed_cb() {
   Canvas.onScreenPressed();
-
-  for ( paintable element : Canvas.getElements() ) {
-    if ( element.getType() != TEXT ) continue;
-
-    text* description = static_cast<text*>( &element );
-    if ( description->getRole() != "desc" ) continue;
-
-    description->setText( getDescription( config ) );
-  }
+  text* description = static_cast<text*>(&Canvas.get("desc"));
+  description->setText(getDescription(config));
 }
 
 void playAuton(Config config) {
@@ -91,6 +84,7 @@ void programmingSkills() {
     Drivetrain.driveFor(fwd, 45, inches);
     Drivetrain.driveFor(reverse, 45, inches);
   }
+  Controller.rumble("...");
 }
 
 void preAutonomous(void) {
@@ -111,7 +105,9 @@ void preAutonomous(void) {
   screenButton skillsButton = screenButton( 120, 60, 120, red, toggleSkills, text( "Toggle Skills", 0, 180, mono40, red ) );
   text description = text( getDescription(config), 0, 130, mono40, black, "desc" );
 
-  Canvas.addElements( switchAutonButton, description );
+  Canvas.setElement("auton", switchAutonButton);
+  Canvas.setElement("skills", skillsButton);
+  Canvas.setElement("desc", description);
 
   screenPressed_cb();
   Brain.Screen.pressed(screenPressed_cb);

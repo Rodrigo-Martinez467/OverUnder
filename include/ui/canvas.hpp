@@ -2,7 +2,7 @@
 #define CANVAS_CLASS_H
 
 #include "ui/paintable.hpp"
-#include <vector>
+#include <map>
 
 using namespace std;
 
@@ -12,30 +12,30 @@ namespace vex {
             canvas() {}
             ~canvas() {}
 
-            void addElement( paintable element ) {
-                this->elements.resize( this->elements.capacity() + 1 );
-                this->elements.push_back( element );
+            void setElement( string key, paintable element ) {
+                this->elements.insert(pair<string, paintable>(key, element));
             }
 
-            void addElements() {}
-            
-            template<typename First, typename ... Elements>
-            void addElements( First element, const Elements&... rest ) {
-                this->addElement( element );
-                this->addElements( rest... );
+            void clear() {
+                this->elements.clear();
             }
 
             void onScreenPressed() {
-                for ( int i = 0; i < this->elements.size(); i++ ) {
-                    this->elements[i].onScreenPressed();
+                for (auto const& entry : this->elements) {
+                    paintable element = entry.second;
+                    element.onScreenPressed();
                 }
             }
 
-            vector<paintable> getElements() {
+            map<string, paintable> getMap() {
                 return this->elements;
             }
+
+            paintable get(string key) {
+                return this->elements.at(key);
+            }
         private:
-            vector<paintable> elements;
+            map<string, paintable> elements = map<string, paintable>();
             
     };
 } // namespace vex
