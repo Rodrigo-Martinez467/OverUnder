@@ -11,16 +11,11 @@ namespace vex
 {
     class text : public paintable {
         public:
-            text(string content, int x, int y, fontType font, class color color, string role = "") : paintable(x, y, -1, color) {
+            text(string content = "", int x = 0, int y = 0, fontType font = mono12, class color color = black) : paintable(x, y, -1, color) {
                 this->setText(content);
-                this->role = role;
                 this->paint();
             }
             ~text() {}
-            
-            static text getDefault() {
-                return text("", 0, 0, mono12, black);
-            }
 
             void setText(string string) {
                 this->content = string;
@@ -28,10 +23,6 @@ namespace vex
 
             void setFont(fontType font) {
                 this->font = font;
-            }
-
-            string getRole() {
-                return this->role;
             }
 
             void paint() {
@@ -47,7 +38,6 @@ namespace vex
         private:
             string content;
             fontType font;
-            string role;
     };
     
 } // namespace vex

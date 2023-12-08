@@ -17,14 +17,12 @@ void programmingSkills();
 void topLeftOrBottomRight();
 void topRightOrBottomLeft();
 
-void screenPressed_cb();
+const int deadband(30);
 
 // Assuming blue is on the left and red is on the right
 enum Config {
-    TOP_LEFT,
-    TOP_RIGHT,
-    BOTTOM_LEFT,
-    BOTTOM_RIGHT
+    TOP_LEFT_BOTTOM_RIGHT,
+    TOP_RIGHT_BOTTOM_LEFT
 };
 
 #endif

@@ -9,8 +9,12 @@
 namespace vex {
     class screenButton : public paintable {
         public: 
-            screenButton( int x, int y, int size, class color color, void action(), text buttonText ) : paintable(x, y, size, color), buttonText(text::getDefault()) {
-                this->init(action, buttonText);
+            screenButton( int x, int y, int size, class color color, void action(), text buttonText ) : paintable(x, y, size, color), buttonText(text()) {
+                this->action = action;
+                this->buttonText = buttonText;
+                this->repositionButton();
+
+                this->paint();
             }
             
             ~screenButton() {}
@@ -18,11 +22,10 @@ namespace vex {
             bool isPressed() {
                 return this->pressed;
             }
-            void onScreenPressed() {
-                this->getPressed(Brain.Screen.xPosition(), Brain.Screen.yPosition());
-                if (this->isPressed()) {
+            void onScreenPressed( int x, int y ) {
+                this->getPressed(x, y);
+                if (this->isPressed())
                     this->action();
-                }
                 
                 this->paint();
             }
@@ -40,11 +43,12 @@ namespace vex {
             void (* action)();
             text buttonText;
 
-            void init(void action(), text buttonText) {
-                this->action = action;
-                this->buttonText = buttonText;
+            void repositionButton() {
+                const int x = this->buttonText.x;
+                const int y = this->buttonText.y;
 
-                this->paint();
+                this->buttonText.setTransform(this->x, this->y);
+                this->buttonText.move(x, y);
             }
             
             bool getPressed(int tx, int ty) {

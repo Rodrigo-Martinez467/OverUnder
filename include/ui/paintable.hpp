@@ -16,13 +16,21 @@ namespace vex {
     class paintable {
         public:
             paintable( int x = 0, int y = 0, int size = 0, class color color = black ) {
-                this->x = x;
-                this->y = y;
+                this->setTransform(x, y);
                 this->size = size;
                 this->setColor(color);
             }
+
+            void setTransform( int x, int y ) {
+                this->x = x;
+                this->y = y;
+            }
+
+            void move( int x, int y ) {
+                this->setTransform(this->x + x, this->y + y);
+            }
             
-            virtual void onScreenPressed() {
+            virtual void onScreenPressed( int x, int y ) {
                 this->paint();
             }
 

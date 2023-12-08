@@ -20,10 +20,10 @@ namespace vex {
                 this->elements.clear();
             }
 
-            void onScreenPressed() {
+            void onScreenPressed( int x, int y ) {
                 for (auto const& entry : this->elements) {
                     paintable element = entry.second;
-                    element.onScreenPressed();
+                    element.onScreenPressed( x, y );
                 }
             }
 
