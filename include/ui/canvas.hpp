@@ -27,6 +27,13 @@ namespace vex {
                 }
             }
 
+            void paint() {
+                for (auto const& entry : this->elements) {
+                    paintable element = entry.second;
+                    element.paint();
+                }
+            }
+
             map<string, paintable> getMap() {
                 return this->elements;
             }

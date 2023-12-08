@@ -18,20 +18,18 @@ using namespace std;
 using namespace vex;
 
 int main() {
-  
-  
-  // create competition instance
-  competition Competition;
+	// create competition instance
+	competition Competition;
 
-  // Set up callbacks for autonomous and driver control periods.
-  Competition.autonomous(autonomous);
-  Competition.drivercontrol(userControl);
+	// Set up callbacks for autonomous and driver control periods.
+	Competition.autonomous(autonomous);
+	Competition.drivercontrol(userControl);
 
-  // Run the pre-autonomous function.
-  preAutonomous();
+	// Run the pre-autonomous function.
+	preAutonomous();
 
-  // Prevent main from exiting with an infinite loop.
-  while (true) {
-    wait(100, msec);
-  }
+	// Prevent main from exiting with an infinite loop.
+	while (true) {
+		wait(100, msec);
+	}
 }

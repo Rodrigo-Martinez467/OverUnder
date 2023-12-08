@@ -12,7 +12,7 @@ namespace vex {
             screenButton( int x, int y, int size, class color color, void action(), text buttonText ) : paintable(x, y, size, color), buttonText(text()) {
                 this->action = action;
                 this->buttonText = buttonText;
-                this->repositionButton();
+                this->repositionText();
 
                 this->paint();
             }
@@ -43,12 +43,12 @@ namespace vex {
             void (* action)();
             text buttonText;
 
-            void repositionButton() {
+            void repositionText() {
                 const int x = this->buttonText.x;
                 const int y = this->buttonText.y;
 
                 this->buttonText.setTransform(this->x, this->y);
-                this->buttonText.move(x, y);
+                this->buttonText.move(x + 10, y + 10);
             }
             
             bool getPressed(int tx, int ty) {
