@@ -33,6 +33,8 @@ namespace vex {
             void paint() {
                 Brain.Screen.setFillColor(this->color);
                 Brain.Screen.drawRectangle(this->x, this->y, this->size, this->size);
+
+                this->buttonText.paint();
             }
 
             PaintableType getType() {
@@ -52,7 +54,8 @@ namespace vex {
             }
             
             bool getPressed(int tx, int ty) {
-                return ((tx >= this->x && tx <= this->x + this->size) && (ty >= this->y && ty <= this->y + this->size));
+                return ((tx >= this->x && tx <= this->x + this->size)
+                    && (ty >= this->y && ty <= this->y + this->size));
             }
     };
 } // namespace vex

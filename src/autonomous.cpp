@@ -34,8 +34,10 @@ void screenPressed() {
 	Canvas.onScreenPressed( Brain.Screen.xPosition(), Brain.Screen.yPosition() );
 
 	paintable element = Canvas.get("desc");
-	text* description = static_cast<text*>(&element);
-	description->setText(getDescription(config));
+	paintable* elementPtr = &element;
+
+	text* descriptionPtr = dynamic_cast<text*>(elementPtr);
+	descriptionPtr->setText(getDescription(config));
 }
 
 void playAuton(Config config) {
@@ -63,9 +65,13 @@ void spinOuttake() {
  * drive forward
 */
 void topLeftOrBottomRight() {
+	Drivetrain.setDriveVelocity(80.0, percent);
+	Drivetrain.driveFor(45, inches, true);
 }
 
 void topRightOrBottomLeft() {
+	Drivetrain.setDriveVelocity(80.0, percent);
+	Drivetrain.driveFor(45, inches, true);
 }
 
 // Skills
@@ -83,9 +89,14 @@ void programmingSkills() {
 		wait(0.5, sec);
 		Drivetrain.setDriveVelocity(40.0, percent);
 		waitUntil(Drivetrain.isDone());
-		Drivetrain.driveFor(reverse, 43, inches);
+		Drivetrain.driveFor(reverse, 45, inches);
 	}
 	Controller.rumble("...");
+
+	Drivetrain.driveFor(40, inches);
+	Drivetrain.turnFor(40, deg);
+	Drivetrain.driveFor(20, inches);
+
 }
 
 void preAutonomous(void) {
@@ -103,7 +114,7 @@ void preAutonomous(void) {
 	Canvas = canvas();
 
 	screenButton switchAutonButton = screenButton( 60, 60, 120, blue, switchAuton_cb, text( "Switch Auton", 0, 0, mono40, blue ) );
-	screenButton skillsButton = screenButton( 120, 60, 120, red, toggleSkills, text( "Toggle Skills", 0, 0, mono40, red ) );
+	screenButton skillsButton = screenButton( 300, 60, 120, red, toggleSkills, text( "Toggle Skills", 0, 0, mono40, red ) );
 	text description = text( getDescription(config), 90, 200, mono40, black );
 
 	Canvas.setElement("auton", switchAutonButton);
@@ -116,10 +127,9 @@ void preAutonomous(void) {
 
 void autonomous(void) {
 	Brain.Screen.clearScreen();
-	// place automonous code here
-	skills = true;
+
 	if (skills)
 		programmingSkills();
 	else
-		playAuton(TOP_LEFT_BOTTOM_RIGHT /*config*/);
+		playAuton(config);
 }
