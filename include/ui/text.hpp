@@ -11,8 +11,11 @@ namespace vex
 {
     class text : public paintable {
         public:
-            text(string content = "", int x = 0, int y = 0, fontType font = mono12, class color color = black) : paintable(x, y, -1, color) {
+            text(string content = "", int x, int y, fontType font = mono12, class color color, class color textColor = white) : paintable(x, y, -1, color) {
                 this->setText(content);
+                this->setFont(font);
+                this->textColor = textColor;
+
                 this->paint();
             }
             ~text() {}
@@ -27,7 +30,9 @@ namespace vex
 
             void paint() {
                 if (this->content == "") return;
-                
+
+                Brain.Screen.setPenColor(this->textColor);
+                Brain.Screen.setFillColor(this->color);
                 Brain.Screen.setFont(this->font);
                 Brain.Screen.printAt(this->x, this->y, this->content.c_str());
             }
@@ -38,6 +43,8 @@ namespace vex
         private:
             string content;
             fontType font;
+
+            vex::color textColor;
     };
     
 } // namespace vex

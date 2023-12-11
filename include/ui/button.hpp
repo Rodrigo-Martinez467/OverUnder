@@ -31,6 +31,7 @@ namespace vex {
             }
 
             void paint() {
+                Brain.Screen.setPenColor(white);
                 Brain.Screen.setFillColor(this->color);
                 Brain.Screen.drawRectangle(this->x, this->y, this->size, this->size);
 

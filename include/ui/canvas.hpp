@@ -13,7 +13,11 @@ namespace vex {
             ~canvas() {}
 
             void setElement( string key, paintable element ) {
-                this->elements.insert(pair<string, paintable>(key, element));
+                this->elements[key] = element;
+            }
+
+            bool has( string key ) {
+                return this->elements.find(key) != this->elements.end();
             }
 
             void clear() {
