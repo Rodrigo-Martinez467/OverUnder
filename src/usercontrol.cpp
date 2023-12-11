@@ -17,13 +17,12 @@ void userControl(void) {
 		LeftWheels.spin(fwd, fwdRev - leftRight, percent);
 		RightWheels.spin(fwd, fwdRev + leftRight, percent);
 
-		if (Controller.ButtonR2.pressing()) {
-		Intake.spin(fwd);
-		} else if (Controller.ButtonL2.pressing()) {
-		Intake.spin(reverse);
-		} else {
-		Intake.stop();
-		}
+		if (Controller.ButtonR2.pressing())
+			Intake.spin(fwd);
+		else if (Controller.ButtonL2.pressing())
+			Intake.spin(reverse);
+		else
+			Intake.stop();
 
 		wait(20, msec);
   	}

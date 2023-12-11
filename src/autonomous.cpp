@@ -126,6 +126,8 @@ void preAutonomous(void) {
 }
 
 void autonomous(void) {
+	skills = true;
+	
 	Brain.Screen.clearScreen();
 
 	if (skills)
