@@ -1,6 +1,7 @@
 #include "vex.h"
 
 using namespace vex;
+using namespace ui;
 using namespace std;
 
 Config config;

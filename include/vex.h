@@ -5,18 +5,23 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string>
+#include <map>
 
 #include "v5.h"
 #include "v5_vcs.h"
+
+#include "vex_color.h"
+#include "vex_brain.h"
+#include "vex_units.h"
 
 #include "robot-config.h"
 #include "helpers.h"
 
 // UI Elements
-#include "ui/button.hpp"
 #include "ui/paintable.hpp"
-#include "ui/text.hpp"
 #include "ui/canvas.hpp"
+#include "ui/text.hpp"
+#include "ui/button.hpp"
 
 #define waitUntil(condition)                                                   \
   do {                                                                         \

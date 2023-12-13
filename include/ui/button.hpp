@@ -1,64 +1,30 @@
 #ifndef BUTTON_CLASS_H
 #define BUTTON_CLASS_H
 
-#include "ui/paintable.hpp"
+#include "vex.h"
 #include "ui/text.hpp"
-#include "vex_brain.h"
-#include "vex_global.h"
 
-namespace vex {
+namespace ui {
     class screenButton : public paintable {
         public: 
-            screenButton( int x, int y, int size, class color color, void action(), text buttonText ) : paintable(x, y, size, color), buttonText(text()) {
-                this->action = action;
-                this->buttonText = buttonText;
-                this->repositionText();
-
-                this->paint();
-            }
+            screenButton( int x, int y, int size, class color color, void action(), text buttonText );
             
-            ~screenButton() {}
+            ~screenButton();
 
-            bool isPressed() {
-                return this->pressed;
-            }
-            void onScreenPressed( int x, int y ) {
-                this->getPressed(x, y);
-                if (this->isPressed())
-                    this->action();
-                
-                this->paint();
-            }
+            bool isPressed();
 
-            void paint() {
-                Brain.Screen.setPenColor(white);
-                Brain.Screen.setFillColor(this->color);
-                Brain.Screen.drawRectangle(this->x, this->y, this->size, this->size);
+            void onScreenPressed( int x, int y );
 
-                this->buttonText.paint();
-            }
-
-            PaintableType getType() {
-                return BUTTON;
-            }
+            void paint();
         private:
             bool pressed;
             void (* action)();
             text buttonText;
 
-            void repositionText() {
-                const int x = this->buttonText.x;
-                const int y = this->buttonText.y;
-
-                this->buttonText.setTransform(this->x, this->y);
-                this->buttonText.move(x + 10, y + 10);
-            }
+            void repositionText();
             
-            bool getPressed(int tx, int ty) {
-                return ((tx >= this->x && tx <= this->x + this->size)
-                    && (ty >= this->y && ty <= this->y + this->size));
-            }
+            bool getPressed(int tx, int ty);
     };
-} // namespace vex
+} // namespace ui
 
 #endif

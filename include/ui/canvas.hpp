@@ -1,55 +1,34 @@
 #ifndef CANVAS_CLASS_H
 #define CANVAS_CLASS_H
 
-#include "ui/paintable.hpp"
-#include <map>
+#include "vex.h"
 
 using namespace std;
 
-namespace vex {
+namespace ui {
     class canvas {
         public:
-            canvas() {}
-            ~canvas() {}
+            canvas();
+            ~canvas();
 
-            void setElement( string key, paintable element ) {
-                this->elements[key] = element;
-            }
+            void setElement( string key, paintable element );
 
-            bool has( string key ) {
-                return this->elements.find(key) != this->elements.end();
-            }
+            bool has( string key );
 
-            void clear() {
-                this->elements.clear();
-            }
+            void clear();
 
-            void onScreenPressed( int x, int y ) {
-                for (auto const& entry : this->elements) {
-                    paintable element = entry.second;
-                    element.onScreenPressed( x, y );
-                }
-            }
+            void onScreenPressed( int x, int y );
 
-            void paint() {
-                for (auto const& entry : this->elements) {
-                    paintable element = entry.second;
-                    element.paint();
-                }
-            }
+            void paint();
 
-            map<string, paintable> getMap() {
-                return this->elements;
-            }
+            map<string, paintable> getMap();
 
-            paintable get(string key) {
-                return this->elements.at(key);
-            }
+            paintable get(string key);
         private:
             map<string, paintable> elements = map<string, paintable>();
             
     };
-} // namespace vex
+} // namespace ui
 
 
 #endif
