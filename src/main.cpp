@@ -1,14 +1,15 @@
-// ----------------------------------------------------------------------------
-//                                                                            
-//    Project:                                               
-//    Author:
-//    Created:
-//    Configuration: VRC 2023-2024 Striker (Drivetrain 2-motor, No Gyro)
-//                   Intake Motor in Port 8
-//                   Arm Motor in Port 3
-//                   Controller        
-//                                                                            
-// ----------------------------------------------------------------------------
+/** ----------------------------------------------------------------------------
+ * 
+ * 		Project: Deez
+ * 		Author: Rodrigo and Arav
+ * 		Created: 8/23/2023
+ * 		Configuration:
+ * 			Drivetrain - 4 Wheel Drive
+ * 
+ * 			Intake Motor - Port 5
+ * 			Wings Pneumatic - Triport A
+ * 
+---------------------------------------------------------------------------- */
 
 // Include the V5 Library
 #include "vex.h"
@@ -29,7 +30,16 @@ int main() {
 	preAutonomous();
 
 	// Prevent main from exiting with an infinite loop.
-	while (true) {
+	while (true)
 		wait(100, msec);
-	}
+}
+
+void tryCloseWings() {
+	if ( Wings.value() )
+		Wings.close();
+}
+
+void tryOpenWings() {
+	if ( !Wings.value() )
+		Wings.open();
 }

@@ -16,5 +16,9 @@ motor_group LeftWheels = motor_group(BackLeftWheel, FrontLeftWheel);
 motor_group RightWheels = motor_group(BackRightWheel, FrontRightWheel);
 
 motor Intake = motor(PORT5, ratio18_1, false); 
+motor Catapult = motor(PORT7, ratio18_1, false);
+
+pneumatics Wings = pneumatics(Brain.ThreeWirePort.A);
+inertial Inertial = inertial(PORT6);
 
 drivetrain Drivetrain = drivetrain(LeftWheels, RightWheels, 320.0, 270.0, 240.0, mm, 1.0);

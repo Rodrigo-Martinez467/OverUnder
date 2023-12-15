@@ -5,9 +5,15 @@ int calcDeadband(int value) {
 	return abs(value) < deadband ? 0 : value;
 }
 
+void toggleWings() {
+	Wings.set( !Wings.value() );
+}
+
 void userControl(void) {
   	Drivetrain.setDriveVelocity(80.0, percent);
   	Brain.Screen.clearScreen();
+
+	Controller.ButtonA.pressed(toggleWings);
   
   	// place driver control in this while loop
 	while (true) {
@@ -30,5 +36,10 @@ void userControl(void) {
 			Intake.stop();
 
 		wait(20, msec);
+
+		if (Controller.ButtonX.pressing())
+			Catapult.spin(fwd);
+		else
+			Catapult.stop();
   	}
 }

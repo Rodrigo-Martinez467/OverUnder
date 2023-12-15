@@ -31,4 +31,13 @@
 #define repeat(iterations)                                                     \
   for (int iterator = 0; iterator < iterations; iterator++)
 
+namespace Util {
+	template<class from, class target>
+	target* cast(from obj) {
+		from* objPtr = &obj;
+		target* targetPtr = dynamic_cast<target*>(objPtr);
+		return targetPtr;
+	}
+}
+
 #endif

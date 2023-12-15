@@ -2,7 +2,6 @@
 #define BUTTON_CLASS_H
 
 #include "vex.h"
-#include "ui/text.hpp"
 
 namespace ui {
     class screenButton : public paintable {

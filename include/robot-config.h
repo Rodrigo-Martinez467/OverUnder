@@ -15,6 +15,10 @@ extern motor_group LeftWheels;
 extern motor_group RightWheels;
 
 extern motor Intake;
+extern motor Catapult;
+
+extern pneumatics Wings;
+extern inertial Inertial;
 
 extern drivetrain Drivetrain;
 

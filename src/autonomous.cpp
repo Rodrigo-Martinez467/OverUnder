@@ -3,6 +3,7 @@
 using namespace vex;
 using namespace ui;
 using namespace std;
+using namespace Util;
 
 Config config;
 canvas Canvas;
@@ -34,11 +35,11 @@ string getDescription(Config config) {
 void screenPressed() {
 	Canvas.onScreenPressed( Brain.Screen.xPosition(), Brain.Screen.yPosition() );
 
-	paintable element = Canvas.get("desc");
-	paintable* elementPtr = &element;
-
-	text* descriptionPtr = dynamic_cast<text*>(elementPtr);
+	text* descriptionPtr = cast<paintable, text>(Canvas.get("desc"));
 	descriptionPtr->setText(getDescription(config));
+
+	screenButton* skillsButtonPtr = cast<paintable, screenButton>(Canvas.get("skills"));
+	skillsButtonPtr->setColor(skills ? blue : green);
 }
 
 void playAuton(Config config) {
@@ -75,13 +76,24 @@ void topRightOrBottomLeft() {
 	Drivetrain.driveFor(45, inches, true);
 }
 
+void newSkills() {
+	tryCloseWings();
+
+	wait(3, sec);
+
+	while(true)
+		Catapult.spin(fwd);
+}
+
 // Skills
 void programmingSkills() {
-	for (int i = 0; i < 4; i++) {
+	tryCloseWings();
+	
+	repeat( 4 ) {
 		Drivetrain.setDriveVelocity(80.0, percent);
 		wait(5, sec);
 
-		for (int e = 0; e < 3; e++){
+		repeat( 3 ) {
 			Controller.rumble("-");
 			wait(1, sec);
 		}
@@ -108,8 +120,8 @@ void preAutonomous(void) {
 	Drivetrain.setDriveVelocity(80.0, percent);
 	Drivetrain.setTurnVelocity(50.0, percent);
 	Intake.setVelocity(80.0, percent);
-	
-	// actions to do when the program starts
+
+	// creating ui
 	Brain.Screen.clearScreen();
 	
 	Canvas = canvas();
@@ -127,12 +139,12 @@ void preAutonomous(void) {
 }
 
 void autonomous(void) {
-	skills = true;
-	
 	Brain.Screen.clearScreen();
 
 	if (skills)
 		programmingSkills();
 	else
 		playAuton(config);
+
+	tryCloseWings();
 }

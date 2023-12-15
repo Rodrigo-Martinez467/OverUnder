@@ -1,7 +1,6 @@
 #ifndef HELPERS_H
 #define HELPERS_H
 
-#include "ui/paintable.hpp"
 #include "vex_device.h"
 #include "vex_color.h"
 #include <array>
@@ -16,6 +15,9 @@ void programmingSkills();
 
 void topLeftOrBottomRight();
 void topRightOrBottomLeft();
+
+void tryCloseWings();
+void tryOpenWings();
 
 const int deadband(30);
 
