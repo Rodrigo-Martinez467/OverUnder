@@ -4,6 +4,7 @@
 #include "vex.h"
 
 using namespace std;
+using namespace Util;
 
 namespace ui {
     class canvas {
@@ -21,11 +22,18 @@ namespace ui {
 
             void paint();
 
-            map<string, paintable> getMap();
+            map<string, paintable*> getMap();
 
-            paintable get(string key);
+            paintable* get(string key);
+
+            template<class target>
+            target* get(string key) {
+                paintable* obj = this->get(key);
+                target* targetPtr = castPtr<paintable, target>(obj);
+                return targetPtr;
+            }
         private:
-            map<string, paintable> elements = map<string, paintable>();
+            map<string, paintable*> elements = map<string, paintable*>();
             
     };
 } // namespace ui

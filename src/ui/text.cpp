@@ -3,7 +3,7 @@
 using namespace vex;
 
 namespace ui {
-	text::text( string content, int x, int y, fontType font, vex::color color, vex::color textColor ) : paintable( x, y, -1, color ) {
+	text::text( string content, int x, int y, fontType font, vex::color color, vex::color textColor ) : paintable( x, y, color ) {
 		this->setText(content);
 		this->setFont(font);
 		this->textColor = textColor;

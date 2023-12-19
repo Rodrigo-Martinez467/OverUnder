@@ -1,6 +1,21 @@
 #ifndef VEX_H
 #define VEX_H
 
+namespace Util {
+	template<class from, class target>
+	target* castPtr(from* obj) {
+		target* targetPtr = dynamic_cast<target*>(obj);
+		return targetPtr;
+	}
+
+	template<class from, class target>
+	target* castRef(from obj) {
+		from* objPtr = &obj;
+		target* targetPtr = castPtr<from, target>(objPtr);
+		return targetPtr;
+	}
+}
+
 #include <math.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -30,14 +45,5 @@
 
 #define repeat(iterations)                                                     \
   for (int iterator = 0; iterator < iterations; iterator++)
-
-namespace Util {
-	template<class from, class target>
-	target* cast(from obj) {
-		from* objPtr = &obj;
-		target* targetPtr = dynamic_cast<target*>(objPtr);
-		return targetPtr;
-	}
-}
 
 #endif

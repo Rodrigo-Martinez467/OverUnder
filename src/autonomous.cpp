@@ -35,11 +35,11 @@ string getDescription(Config config) {
 void screenPressed() {
 	Canvas.onScreenPressed( Brain.Screen.xPosition(), Brain.Screen.yPosition() );
 
-	text* descriptionPtr = cast<paintable, text>(Canvas.get("desc"));
-	descriptionPtr->setText(getDescription(config));
+	text* desc = Canvas.get<text>("desc");
+	desc->setText(getDescription(config));
 
-	screenButton* skillsButtonPtr = cast<paintable, screenButton>(Canvas.get("skills"));
-	skillsButtonPtr->setColor(skills ? blue : green);
+	screenButton* skillsButton = Canvas.get<screenButton>("skills");
+	skillsButton->setColor(skills ? green : red);
 }
 
 void playAuton(Config config) {
@@ -81,14 +81,11 @@ void newSkills() {
 
 	wait(3, sec);
 
-	while(true)
-		Catapult.spin(fwd);
+	Catapult.spin(fwd);
 }
 
 // Skills
 void programmingSkills() {
-	tryCloseWings();
-	
 	repeat( 4 ) {
 		Drivetrain.setDriveVelocity(80.0, percent);
 		wait(5, sec);
@@ -116,6 +113,8 @@ void preAutonomous(void) {
 	config = TOP_LEFT_BOTTOM_RIGHT;
 	skills = false;
 
+	tryCloseWings();
+
 	// default motor speeds
 	Drivetrain.setDriveVelocity(80.0, percent);
 	Drivetrain.setTurnVelocity(50.0, percent);
@@ -126,8 +125,8 @@ void preAutonomous(void) {
 	
 	Canvas = canvas();
 
-	screenButton switchAutonButton = screenButton( 60, 60, 120, blue, switchAuton_cb, text( "Switch Auton", 0, 0, mono40, blue ) );
-	screenButton skillsButton = screenButton( 300, 60, 120, red, toggleSkills, text( "Toggle Skills", 0, 0, mono40, red ) );
+	screenButton switchAutonButton = screenButton( 60, 60, 120, 120, blue, switchAuton_cb, text( "Switch Auton", 0, 0, mono40, blue ) );
+	screenButton skillsButton = screenButton( 300, 60, 120, 120, red, toggleSkills, text( "Toggle Skills", 0, 0, mono40, red ) );
 	text description = text( getDescription(config), 90, 200, mono40, black );
 
 	Canvas.setElement("auton", switchAutonButton);

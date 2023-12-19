@@ -6,7 +6,7 @@
 namespace ui {
     class screenButton : public paintable {
         public: 
-            screenButton( int x, int y, int size, class color color, void action(), text buttonText );
+            screenButton( int x, int y, int width, int height, class color color, void action(), text buttonText );
             
             ~screenButton();
 
@@ -16,6 +16,8 @@ namespace ui {
 
             void paint();
         private:
+            int width, height;
+            
             bool pressed;
             void (* action)();
             text buttonText;

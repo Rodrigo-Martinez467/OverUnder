@@ -5,7 +5,7 @@ namespace ui {
 	canvas::~canvas() {}
 
 	void canvas::setElement( string key, paintable element ) {
-		this->elements[key] = element;
+		this->elements[key] = &element;
 	}
 
 	bool canvas::has( string key ) {
@@ -18,23 +18,24 @@ namespace ui {
 
 	void canvas::onScreenPressed( int x, int y ) {
 		for (auto const& entry : this->elements) {
-			paintable element = entry.second;
-			element.onScreenPressed( x, y );
+			paintable* element = entry.second;
+			element->onScreenPressed( x, y );
 		}
 	}
 
 	void canvas::paint() {
 		for (auto const& entry : this->elements) {
-			paintable element = entry.second;
-			element.paint();
+			paintable* element = entry.second;
+			element->paint();
 		}
 	}
 
-	map<string, paintable> canvas::getMap() {
+	map<string, paintable*> canvas::getMap() {
 		return this->elements;
 	}
 
-	paintable canvas::get( string key ) {
+	paintable* canvas::get(string key) {
+		if (!this->has(key)) return NULL;
 		return this->elements.at(key);
 	}
 }

@@ -3,9 +3,8 @@
 using namespace std;
 
 namespace ui {
-	paintable::paintable( int x, int y, int size, class color color ) {
+	paintable::paintable( int x, int y, class color color ) {
 		this->setTransform(x, y);
-		this->size = size;
 		this->setColor(color);
 	}
 

@@ -6,7 +6,7 @@
 namespace ui {
     class paintable {
         public:
-            paintable( int x = 0, int y = 0, int size = 0, class color color = black );
+            paintable( int x = 0, int y = 0, class color color = black );
 
             void setTransform( int x, int y );
 
@@ -14,7 +14,7 @@ namespace ui {
             
             virtual void onScreenPressed( int x, int y );
 
-            int x, y, size;
+            int x, y;
             color color;
 
             void setColor(class color color);

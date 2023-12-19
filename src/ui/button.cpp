@@ -1,7 +1,7 @@
 #include "vex.h"
 
 namespace ui {
-	screenButton::screenButton( int x, int y, int size, class color color, void action(), text buttonText ) : paintable(x, y, size, color), buttonText(text()) {
+	screenButton::screenButton( int x, int y, int length, int width, class color color, void action(), text buttonText ) : paintable(x, y, color), buttonText(text()) {
 		this->action = action;
 		this->buttonText = buttonText;
 		this->repositionText();
@@ -26,7 +26,7 @@ namespace ui {
 	void screenButton::paint() {
 		Brain.Screen.setPenColor(white);
 		Brain.Screen.setFillColor(this->color);
-		Brain.Screen.drawRectangle(this->x, this->y, this->size, this->size);
+		Brain.Screen.drawRectangle(this->x, this->y, this->width, this->height);
 
 		this->buttonText.paint();
 	}
@@ -40,7 +40,7 @@ namespace ui {
 	}
 
 	bool screenButton::getPressed( int tx, int ty ) {
-		return ((tx >= this->x && tx <= this->x + this->size)
-			&& (ty >= this->y && ty <= this->y + this->size));
+		return ((tx >= this->x && tx <= this->x + this->width)
+			&& (ty >= this->y && ty <= this->y + this->height));
 	}
 }
