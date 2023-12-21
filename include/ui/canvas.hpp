@@ -4,38 +4,40 @@
 #include "vex.h"
 
 using namespace std;
-using namespace Util;
+using namespace util;
 
 namespace ui {
-    class canvas {
-        public:
-            canvas();
-            ~canvas();
 
-            void setElement( string key, paintable element );
+class Canvas {
+    public:
+        Canvas();
+        ~Canvas();
 
-            bool has( string key );
+        void setElement( string key, Paintable element );
 
-            void clear();
+        bool has( string key );
 
-            void onScreenPressed( int x, int y );
+        void clear();
 
-            void paint();
+        void onScreenPressed( int x, int y );
 
-            map<string, paintable*> getMap();
+        void paint();
 
-            paintable* get(string key);
+        map<string, Paintable*> getMap();
 
-            template<class target>
-            target* get(string key) {
-                paintable* obj = this->get(key);
-                target* targetPtr = castPtr<paintable, target>(obj);
-                return targetPtr;
-            }
-        private:
-            map<string, paintable*> elements = map<string, paintable*>();
-            
-    };
+        Paintable* get(string key);
+
+        template<class target, typename enable_if<is_base_of<Paintable, target>::value>::type* = nullptr>
+        target* get(string key) {
+            Paintable* obj = this->get(key);
+            target* targetPtr = castPtr<Paintable, target>(obj);
+            return targetPtr;
+        }
+    private:
+        map<string, Paintable*> elements = map<string, Paintable*>();
+        
+};
+
 } // namespace ui
 
 

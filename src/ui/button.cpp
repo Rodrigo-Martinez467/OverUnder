@@ -1,46 +1,46 @@
 #include "vex.h"
 
 namespace ui {
-	screenButton::screenButton( int x, int y, int length, int width, class color color, void action(), text buttonText ) : paintable(x, y, color), buttonText(text()) {
-		this->action = action;
-		this->buttonText = buttonText;
-		this->repositionText();
 
-		this->paint();
-	}
+ScreenButton::ScreenButton( int x, int y, int width, int height, class color color, void action(), Text buttonText ) : Paintable(x, y, color), buttonText(Text()) {
+	this->action = action;
+	this->buttonText = buttonText;
+	this->repositionText();
+}
 
-	screenButton::~screenButton() {}
+ScreenButton::~ScreenButton() {}
 
-	bool screenButton::isPressed() {
-		return this->pressed;
-	}
+bool ScreenButton::isPressed() {
+	return this->pressed;
+}
 
-	void screenButton::onScreenPressed( int x, int y ) {
-		this->getPressed(x, y);
-		if (this->isPressed())
-			this->action();
-		
-		this->paint();
-	}
+void ScreenButton::onScreenPressed( int x, int y ) {
+	this->getPressed(x, y);
+	if (this->isPressed())
+		this->action();
+	
+	this->paint();
+}
 
-	void screenButton::paint() {
-		Brain.Screen.setPenColor(white);
-		Brain.Screen.setFillColor(this->color);
-		Brain.Screen.drawRectangle(this->x, this->y, this->width, this->height);
+void ScreenButton::paint() {
+	Brain.Screen.setPenColor(white);
+	Brain.Screen.setFillColor(this->color);
+	Brain.Screen.drawRectangle(this->x, this->y, this->width, this->height);
 
-		this->buttonText.paint();
-	}
+	this->buttonText.paint();
+}
 
-	void screenButton::repositionText() {
-		const int x = this->buttonText.x;
-		const int y = this->buttonText.y;
+void ScreenButton::repositionText() {
+	const int x = this->buttonText.x;
+	const int y = this->buttonText.y;
 
-		this->buttonText.setTransform(this->x, this->y);
-		this->buttonText.move(x + 10, y + 10);
-	}
+	this->buttonText.setTransform(this->x, this->y);
+	this->buttonText.move(x + 10, y + 10);
+}
 
-	bool screenButton::getPressed( int tx, int ty ) {
-		return ((tx >= this->x && tx <= this->x + this->width)
-			&& (ty >= this->y && ty <= this->y + this->height));
-	}
+bool ScreenButton::getPressed( int tx, int ty ) {
+	return ((tx >= this->x && tx <= this->x + this->width)
+		&& (ty >= this->y && ty <= this->y + this->height));
+}
+
 }

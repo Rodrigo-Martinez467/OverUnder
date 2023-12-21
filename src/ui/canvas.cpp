@@ -1,41 +1,43 @@
 #include "vex.h"
 
 namespace ui {
-	canvas::canvas() {}
-	canvas::~canvas() {}
 
-	void canvas::setElement( string key, paintable element ) {
-		this->elements[key] = &element;
-	}
+Canvas::Canvas() {}
+Canvas::~Canvas() {}
 
-	bool canvas::has( string key ) {
-		return this->elements.find(key) != this->elements.end();
-	}
+void Canvas::setElement( string key, Paintable element ) {
+	this->elements[key] = &element;
+}
 
-	void canvas::clear() {
-		this->elements.clear();
-	}
+bool Canvas::has( string key ) {
+	return this->elements.find(key) != this->elements.end();
+}
 
-	void canvas::onScreenPressed( int x, int y ) {
-		for (auto const& entry : this->elements) {
-			paintable* element = entry.second;
-			element->onScreenPressed( x, y );
-		}
-	}
+void Canvas::clear() {
+	this->elements.clear();
+}
 
-	void canvas::paint() {
-		for (auto const& entry : this->elements) {
-			paintable* element = entry.second;
-			element->paint();
-		}
+void Canvas::onScreenPressed( int x, int y ) {
+	for (auto const& entry : this->elements) {
+		Paintable* element = entry.second;
+		element->onScreenPressed( x, y );
 	}
+}
 
-	map<string, paintable*> canvas::getMap() {
-		return this->elements;
+void Canvas::paint() {
+	for (auto const& entry : this->elements) {
+		Paintable* element = entry.second;
+		element->paint();
 	}
+}
 
-	paintable* canvas::get(string key) {
-		if (!this->has(key)) return NULL;
-		return this->elements.at(key);
-	}
+map<string, Paintable*> Canvas::getMap() {
+	return this->elements;
+}
+
+Paintable* Canvas::get(string key) {
+	if (!this->has(key)) return nullptr;
+	return this->elements.at(key);
+}
+
 }

@@ -1,31 +1,31 @@
 #include "vex.h"
 
-using namespace std;
-
 namespace ui {
-	paintable::paintable( int x, int y, class color color ) {
-		this->setTransform(x, y);
-		this->setColor(color);
-	}
 
-	paintable::~paintable() {}
+Paintable::Paintable( int x, int y, class color color ) {
+	this->setTransform(x, y);
+	this->setColor(color);
+}
 
-	void paintable::setTransform( int x, int y ) {
-		this->x = x;
-		this->y = y;
-	}
+Paintable::~Paintable() {}
 
-	void paintable::move( int x, int y ) {
-		this->setTransform(this->x + x, this->y + y);
-	}
+void Paintable::setTransform( int x, int y ) {
+	this->x = x;
+	this->y = y;
+}
 
-	void paintable::onScreenPressed( int x, int y ) {
-		this->paint();
-	}
+void Paintable::move( int x, int y ) {
+	this->setTransform(this->x + x, this->y + y);
+}
 
-	void paintable::setColor( class color color ) {
-		this->color = color;
-	}
+void Paintable::onScreenPressed( int x, int y ) {
+	this->paint();
+}
 
-	void paintable::paint() {}
+void Paintable::setColor( class color color ) {
+	this->color = color;
+}
+
+void Paintable::paint() {}
+
 }

@@ -6,23 +6,24 @@
 using namespace std;
 
 namespace ui {
-    class text : public paintable {
-        public:
-            text(string content = "", int x = 0, int y = 0, fontType font = mono12, class color color = black, class color textColor = white);
-            ~text();
 
-            void setText(string string);
+class Text : public Paintable {
+    public:
+        Text(string content = "", int x = 0, int y = 0, fontType font = mono12, class color color = black, class color textColor = white);
+        ~Text();
 
-            void setFont(fontType font);
+        void setText(string string);
 
-            void paint();
-        private:
-            string content;
-            fontType font;
+        void setFont(fontType font);
 
-            vex::color textColor;
-    };
-    
+        void paint();
+    private:
+        string content;
+        fontType font;
+
+        vex::color textColor;
+};
+
 } // namespace ui
 
 #endif

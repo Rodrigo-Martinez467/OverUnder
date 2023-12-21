@@ -1,19 +1,21 @@
 #ifndef VEX_H
 #define VEX_H
 
-namespace Util {
-	template<class from, class target>
-	target* castPtr(from* obj) {
-		target* targetPtr = dynamic_cast<target*>(obj);
-		return targetPtr;
-	}
+namespace util {
 
-	template<class from, class target>
-	target* castRef(from obj) {
-		from* objPtr = &obj;
-		target* targetPtr = castPtr<from, target>(objPtr);
-		return targetPtr;
-	}
+template<class from, class target>
+target* castPtr(from* obj) {
+	target* targetPtr = dynamic_cast<target*>(obj);
+	return targetPtr;
+}
+
+template<class from, class target>
+target* castRef(from obj) {
+	from* objPtr = &obj;
+	target* targetPtr = castPtr<from, target>(objPtr);
+	return targetPtr;
+}
+
 }
 
 #include <math.h>

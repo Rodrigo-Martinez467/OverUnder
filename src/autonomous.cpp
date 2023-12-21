@@ -3,10 +3,10 @@
 using namespace vex;
 using namespace ui;
 using namespace std;
-using namespace Util;
+using namespace util;
 
 Config config;
-canvas Canvas;
+Canvas canvas;
 bool skills;
 
 void switchAuton_cb() {
@@ -33,12 +33,12 @@ string getDescription(Config config) {
 }
 
 void screenPressed() {
-	Canvas.onScreenPressed( Brain.Screen.xPosition(), Brain.Screen.yPosition() );
+	canvas.onScreenPressed( Brain.Screen.xPosition(), Brain.Screen.yPosition() );
 
-	text* desc = Canvas.get<text>("desc");
+	Text* desc = canvas.get<Text>("desc");
 	desc->setText(getDescription(config));
 
-	screenButton* skillsButton = Canvas.get<screenButton>("skills");
+	ScreenButton* skillsButton = canvas.get<ScreenButton>("skills");
 	skillsButton->setColor(skills ? green : red);
 }
 
@@ -123,17 +123,17 @@ void preAutonomous(void) {
 	// creating ui
 	Brain.Screen.clearScreen();
 	
-	Canvas = canvas();
+	canvas = Canvas();
 
-	screenButton switchAutonButton = screenButton( 60, 60, 120, 120, blue, switchAuton_cb, text( "Switch Auton", 0, 0, mono40, blue ) );
-	screenButton skillsButton = screenButton( 300, 60, 120, 120, red, toggleSkills, text( "Toggle Skills", 0, 0, mono40, red ) );
-	text description = text( getDescription(config), 90, 200, mono40, black );
+	ScreenButton switchAutonButton = ScreenButton( 60, 60, 120, 120, blue, switchAuton_cb, Text( "Switch Auton", 0, 0, mono40, blue ) );
+	ScreenButton skillsButton = ScreenButton( 300, 60, 120, 120, red, toggleSkills, Text( "Toggle Skills", 0, 0, mono40, red ) );
+	Text description = Text( getDescription(config), 90, 200, mono40, black );
 
-	Canvas.setElement("auton", switchAutonButton);
-	Canvas.setElement("skills", skillsButton);
-	Canvas.setElement("desc", description);
+	canvas.setElement("auton", switchAutonButton);
+	canvas.setElement("skills", skillsButton);
+	canvas.setElement("desc", description);
 
-	Canvas.paint();
+	canvas.paint();
 	Brain.Screen.pressed(screenPressed);
 }
 

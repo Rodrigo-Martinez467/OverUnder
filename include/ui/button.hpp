@@ -4,28 +4,30 @@
 #include "vex.h"
 
 namespace ui {
-    class screenButton : public paintable {
-        public: 
-            screenButton( int x, int y, int width, int height, class color color, void action(), text buttonText );
-            
-            ~screenButton();
 
-            bool isPressed();
+class ScreenButton : public Paintable {
+    public: 
+        ScreenButton( int x, int y, int width, int height, class color color, void action(), Text buttonText );
+        
+        ~ScreenButton();
 
-            void onScreenPressed( int x, int y );
+        bool isPressed();
 
-            void paint();
-        private:
-            int width, height;
-            
-            bool pressed;
-            void (* action)();
-            text buttonText;
+        void onScreenPressed( int x, int y );
 
-            void repositionText();
-            
-            bool getPressed(int tx, int ty);
-    };
+        void paint();
+    private:
+        int width, height;
+        
+        bool pressed;
+        void (* action)();
+        Text buttonText;
+
+        void repositionText();
+        
+        bool getPressed(int tx, int ty);
+};
+
 } // namespace ui
 
 #endif
