@@ -20,8 +20,8 @@ void userControl(void) {
 		const int leftRight = calcDeadband(Controller.Axis1.value());
 		const int fwdRev = calcDeadband(Controller.Axis3.value());
 		
-		LeftWheels.spin(fwd, fwdRev - leftRight, percent);
-		RightWheels.spin(fwd, fwdRev + leftRight, percent);
+		LeftWheels.spin(fwd, fwdRev + leftRight, percent);
+		RightWheels.spin(fwd, fwdRev - leftRight, percent);
 
 		const bool inFwd = Controller.ButtonR2.pressing();
 		const bool inRev = Controller.ButtonL2.pressing();
