@@ -4,13 +4,13 @@ using namespace vex;
 brain Brain;
 controller Controller = controller(primary);
 
-motor BackLeftWheel = motor(PORT11, ratio18_1, false);
+motor BackLeftWheel = motor(PORT11, ratio18_1, true);
 // motor MiddleLeftWheel = motor(PORT2, ratio18_1, true);
-motor FrontLeftWheel = motor(PORT1, ratio18_1, false);
+motor FrontLeftWheel = motor(PORT1, ratio18_1, true);
 
-motor BackRightWheel = motor(PORT20, ratio18_1, true);
+motor BackRightWheel = motor(PORT20, ratio18_1, false);
 // motor MiddleRightWheel = motor(PORT10, ratio18_1, false);
-motor FrontRightWheel = motor(PORT10, ratio18_1, true);
+motor FrontRightWheel = motor(PORT10, ratio18_1, false);
 
 motor_group LeftWheels = motor_group(BackLeftWheel, FrontLeftWheel); 
 motor_group RightWheels = motor_group(BackRightWheel, FrontRightWheel);

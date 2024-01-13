@@ -19,7 +19,7 @@ void topRightOrBottomLeft();
 void tryCloseWings();
 void tryOpenWings();
 
-const int deadband(30);
+const int deadband(45);
 
 // Assuming blue is on the left and red is on the right
 enum Config {

@@ -69,11 +69,15 @@ void spinOuttake() {
 void topLeftOrBottomRight() {
 	Drivetrain.setDriveVelocity(80.0, percent);
 	Drivetrain.driveFor(45, inches, true);
+	// Drivetrain.turnFor(45, degrees);
+	// Drivetrain.driveFor(45, inches);
 }
 
 void topRightOrBottomLeft() {
 	Drivetrain.setDriveVelocity(80.0, percent);
 	Drivetrain.driveFor(45, inches, true);
+	Drivetrain.turnFor(45, degrees);
+	Drivetrain.driveFor(45, inches);
 }
 
 void newSkills() {
@@ -119,7 +123,7 @@ void preAutonomous(void) {
 	Drivetrain.setDriveVelocity(80.0, percent);
 	Drivetrain.setTurnVelocity(50.0, percent);
 	Intake.setVelocity(80.0, percent);
-	Catapult.setVelocity(40.0, percent);
+	Catapult.setVelocity(70.0, percent);
 
 	// creating ui
 	Brain.Screen.clearScreen();
