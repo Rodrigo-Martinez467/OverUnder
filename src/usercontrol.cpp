@@ -2,6 +2,7 @@
 using namespace vex;
 
 int dir;
+bool out;
 
 int calcDeadband(int value) {
 	return abs(value) < deadband ? 0 : value;
@@ -11,7 +12,7 @@ void toggleWings() {
 	Wings.set( !Wings.value() );
 }
 
-void spinCatapult() {
+void prepareCatapult() {
 	Catapult.spin(fwd);
 }
 
@@ -32,7 +33,7 @@ void userControl(void) {
 	// Controller.ButtonA.pressed(toggleWings);
 	Controller.ButtonX.pressed(spinCatapult);
 	Controller.ButtonX.released(stopCatapult);
-	Controller.ButtonA.pressed(invertControls);
+	// Controller.ButtonA.pressed(invertControls);
   
   	// place driver control in this while loop
 	while (true) {
