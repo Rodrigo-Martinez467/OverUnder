@@ -123,7 +123,7 @@ void preAutonomous(void) {
 	Drivetrain.setDriveVelocity(80.0, percent);
 	Drivetrain.setTurnVelocity(50.0, percent);
 	Intake.setVelocity(80.0, percent);
-	Catapult.setVelocity(70.0, percent);
+	Catapult.setVelocity(85.0, percent);
 
 	// creating ui
 	Brain.Screen.clearScreen();
