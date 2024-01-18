@@ -31,7 +31,7 @@ void userControl(void) {
   	Brain.Screen.clearScreen();
 
 	// Controller.ButtonA.pressed(toggleWings);
-	Controller.ButtonX.pressed(spinCatapult);
+	Controller.ButtonX.pressed(prepareCatapult);
 	Controller.ButtonX.released(stopCatapult);
 	// Controller.ButtonA.pressed(invertControls);
   
