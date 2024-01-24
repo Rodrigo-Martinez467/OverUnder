@@ -1,44 +1,34 @@
 #include "vex.h"
 using namespace vex;
 
-int dir;
-bool out;
+bool catapultSpinning;
 
 int calcDeadband(int value) {
 	return abs(value) < deadband ? 0 : value;
 }
 
-void toggleWings() {
-	Wings.set( !Wings.value() );
-}
-
-void prepareCatapult() {
-	Catapult.spin(fwd);
-}
-
-void stopCatapult() {
-	Catapult.stop();
-}
-
-void invertControls() {
-	dir *= -1;
+void toggleCatapult() {
+	catapultSpinning = !catapultSpinning;
+	if (catapultSpinning) {
+		Catapult.spin(fwd);
+	}
+	else {
+		Catapult.stop();
+	}
 }
 
 void userControl(void) {
-  	dir = 1;
+  	catapultSpinning = false;
 	
 	Drivetrain.setDriveVelocity(80.0, percent);
   	Brain.Screen.clearScreen();
 
-	// Controller.ButtonA.pressed(toggleWings);
-	Controller.ButtonX.pressed(spinCatapult);
-	Controller.ButtonX.released(stopCatapult);
-	// Controller.ButtonA.pressed(invertControls);
+	Controller.ButtonX.pressed(toggleCatapult);
   
   	// place driver control in this while loop
 	while (true) {
-		const int leftRight = calcDeadband(Controller.Axis1.value()) * dir;
-		const int fwdRev = calcDeadband(Controller.Axis3.value()) * dir;
+		const int leftRight = calcDeadband(Controller.Axis1.value());
+		const int fwdRev = calcDeadband(Controller.Axis3.value());
 		
 		LeftWheels.spin(fwd, fwdRev + leftRight, percent);
 		RightWheels.spin(fwd, fwdRev - leftRight, percent);
