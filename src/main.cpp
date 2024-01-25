@@ -7,7 +7,7 @@
  * 			Drivetrain - 4 Wheel Drive
  * 
  * 			Intake Motor - Port 5
- * 			Wings Pneumatic - Triport A
+ * 			Catapult Motor - Port 12
  * 
 ---------------------------------------------------------------------------- */
 
