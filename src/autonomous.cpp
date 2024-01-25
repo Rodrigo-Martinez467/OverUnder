@@ -88,31 +88,6 @@ void newSkills() {
 	Catapult.spin(fwd);
 }
 
-// Skills
-void programmingSkills() {
-	repeat( 4 ) {
-		Drivetrain.setDriveVelocity(80.0, percent);
-		wait(5, sec);
-
-		repeat( 3 ) {
-			Controller.rumble("-");
-			wait(1, sec);
-		}
-
-		Drivetrain.driveFor(fwd, 45, inches, false);
-		wait(0.5, sec);
-		Drivetrain.setDriveVelocity(40.0, percent);
-		waitUntil(Drivetrain.isDone());
-		Drivetrain.driveFor(reverse, 45, inches);
-	}
-	Controller.rumble("...");
-
-	Drivetrain.driveFor(40, inches);
-	Drivetrain.turnFor(40, deg);
-	Drivetrain.driveFor(20, inches);
-
-}
-
 void preAutonomous(void) {
 	config = TOP_LEFT_BOTTOM_RIGHT;
 	skills = false;
@@ -146,7 +121,7 @@ void autonomous(void) {
 	Brain.Screen.clearScreen();
 
 	if (skills)
-		programmingSkills();
+		programmingSkills(config);
 	else
 		playAuton(config);
 

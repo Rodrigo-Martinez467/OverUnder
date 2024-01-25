@@ -11,7 +11,6 @@ using namespace std;
 void preAutonomous();
 void autonomous(void);
 void userControl(void);
-void programmingSkills();
 
 void topLeftOrBottomRight();
 void topRightOrBottomLeft();
@@ -26,5 +25,7 @@ enum Config {
     TOP_LEFT_BOTTOM_RIGHT,
     TOP_RIGHT_BOTTOM_LEFT
 };
+
+void programmingSkills(Config config);
 
 #endif
