@@ -10,7 +10,7 @@ motor FrontLeftWheel = motor(PORT1, ratio18_1, false);
 
 motor BackRightWheel = motor(PORT20, ratio18_1, true);
 // motor MiddleRightWheel = motor(PORT10, ratio18_1, false);
-motor FrontRightWheel = motor(PORT10, ratio18_1, true);
+motor FrontRightWheel = motor(PORT8, ratio18_1, true);
 
 motor_group LeftWheels = motor_group(BackLeftWheel, FrontLeftWheel); 
 motor_group RightWheels = motor_group(BackRightWheel, FrontRightWheel);

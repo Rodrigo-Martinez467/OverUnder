@@ -7,29 +7,19 @@ int calcDeadband(int value) {
 	return abs(value) < deadband ? 0 : value;
 }
 
-void toggleCatapult() {
-	catapultSpinning = !catapultSpinning;
-	if (catapultSpinning)
-		Catapult.spin(fwd);
-	else
-		Catapult.stop();
-}
-
 void userControl(void) {
   	catapultSpinning = false;
 	
 	Drivetrain.setDriveVelocity(80.0, percent);
   	Brain.Screen.clearScreen();
-
-	Controller.ButtonX.pressed(toggleCatapult);
   
   	// place driver control in this while loop
 	while (true) {
 		const int leftRight = calcDeadband(Controller.Axis1.value());
 		const int fwdRev = calcDeadband(Controller.Axis3.value());
 		
-		LeftWheels.spin(fwd, fwdRev - leftRight, percent);
-		RightWheels.spin(fwd, fwdRev + leftRight, percent);
+		LeftWheels.spin(fwd, fwdRev + leftRight, percent);
+		RightWheels.spin(fwd, fwdRev - leftRight, percent);
 
 		const bool inFwd = Controller.ButtonR2.pressing();
 		const bool inRev = Controller.ButtonL2.pressing();
@@ -42,6 +32,11 @@ void userControl(void) {
 			Intake.spin(reverse);
 		else
 			Intake.stop();
+
+		if (Controller.ButtonX.pressing())
+			Catapult.spin(fwd);
+		else
+			Catapult.stop();
 
 		wait(20, msec);
   	}
