@@ -4,6 +4,7 @@ using namespace vex;
 using namespace ui;
 using namespace std;
 using namespace util;
+using namespace this_thread;
 
 Config config;
 Canvas canvas;
@@ -68,24 +69,11 @@ void spinOuttake() {
 */
 void topLeftOrBottomRight() {
 	Drivetrain.setDriveVelocity(80.0, percent);
-	Drivetrain.driveFor(45, inches, true);
-	// Drivetrain.turnFor(45, degrees);
-	// Drivetrain.driveFor(45, inches);
+	Drivetrain.driveFor(-45, inches);
 }
 
 void topRightOrBottomLeft() {
-	Drivetrain.setDriveVelocity(80.0, percent);
-	Drivetrain.driveFor(45, inches, true);
-	Drivetrain.turnFor(45, degrees);
-	Drivetrain.driveFor(45, inches);
-}
-
-void newSkills() {
-	tryCloseWings();
-
-	wait(3, sec);
-
-	Catapult.spin(fwd);
+	topLeftOrBottomRight();
 }
 
 void preAutonomous(void) {
@@ -103,18 +91,18 @@ void preAutonomous(void) {
 	// creating ui
 	Brain.Screen.clearScreen();
 	
-	canvas = Canvas();
+	// canvas = Canvas();
 
-	ScreenButton switchAutonButton = ScreenButton( 60, 60, 120, 120, blue, switchAuton_cb, Text( "Switch Auton", 0, 0, mono40, blue ) );
-	ScreenButton skillsButton = ScreenButton( 300, 60, 120, 120, red, toggleSkills, Text( "Toggle Skills", 0, 0, mono40, red ) );
-	Text description = Text( getDescription(config), 90, 200, mono40, black );
+	// ScreenButton switchAutonButton = ScreenButton( 60, 60, 120, 120, blue, switchAuton_cb, Text( "Switch Auton", 0, 0, mono40, blue ) );
+	// ScreenButton skillsButton = ScreenButton( 300, 60, 120, 120, red, toggleSkills, Text( "Toggle Skills", 0, 0, mono40, red ) );
+	// Text description = Text( getDescription(config), 90, 200, mono40, black );
 
-	canvas.setElement("auton", switchAutonButton);
-	canvas.setElement("skills", skillsButton);
-	canvas.setElement("desc", description);
+	// canvas.setElement("auton", switchAutonButton);
+	// canvas.setElement("skills", skillsButton);
+	// canvas.setElement("desc", description);
 
-	canvas.paint();
-	Brain.Screen.pressed(screenPressed);
+	// canvas.paint();
+	// Brain.Screen.pressed(screenPressed);
 }
 
 void autonomous(void) {
