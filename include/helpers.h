@@ -19,6 +19,7 @@ void tryCloseWings();
 void tryOpenWings();
 
 const int deadband(45);
+extern int driverDirection;
 
 // Assuming blue is on the left and red is on the right
 enum Config {

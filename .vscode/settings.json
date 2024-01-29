@@ -39,6 +39,5 @@
 		"tuple": "cpp",
 		"utility": "cpp",
 		"map": "cpp"
-	},
-	"C_Cpp.errorSquiggles": "enabled"
+	}
 }

@@ -70,6 +70,7 @@ void spinOuttake() {
 void topLeftOrBottomRight() {
 	Drivetrain.setDriveVelocity(80.0, percent);
 	Drivetrain.driveFor(-45, inches);
+	Drivetrain.driveFor(10, inches);
 }
 
 void topRightOrBottomLeft() {

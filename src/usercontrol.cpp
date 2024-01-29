@@ -1,22 +1,28 @@
 #include "vex.h"
 using namespace vex;
 
-bool catapultSpinning;
+int driverDirection;
 
 int calcDeadband(int value) {
 	return abs(value) < deadband ? 0 : value;
 }
 
+// Makes the robot move backwards, making the back bar the front
+void invertControls() {
+	driverDirection *= -1;
+}
+
 void userControl(void) {
-  	catapultSpinning = false;
+  	driverDirection = 1;
 	
 	Drivetrain.setDriveVelocity(80.0, percent);
   	Brain.Screen.clearScreen();
+	Controller.ButtonA.pressed(invertControls);
   
   	// place driver control in this while loop
 	while (true) {
 		const int leftRight = calcDeadband(Controller.Axis1.value());
-		const int fwdRev = calcDeadband(Controller.Axis3.value());
+		const int fwdRev = calcDeadband(Controller.Axis2.value()) * driverDirection;
 		
 		LeftWheels.spin(fwd, fwdRev + leftRight, percent);
 		RightWheels.spin(fwd, fwdRev - leftRight, percent);

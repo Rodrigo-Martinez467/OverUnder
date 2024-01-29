@@ -10,12 +10,12 @@ motor FrontLeftWheel = motor(PORT1, ratio18_1, false);
 
 motor BackRightWheel = motor(PORT20, ratio18_1, true);
 // motor MiddleRightWheel = motor(PORT10, ratio18_1, false);
-motor FrontRightWheel = motor(PORT8, ratio18_1, true);
+motor FrontRightWheel = motor(PORT18, ratio18_1, true);
 
 motor_group LeftWheels = motor_group(BackLeftWheel, FrontLeftWheel); 
 motor_group RightWheels = motor_group(BackRightWheel, FrontRightWheel);
 
-motor Intake = motor(PORT5, ratio18_1, false); 
+motor Intake = motor(PORT2, ratio18_1, false); 
 motor Catapult = motor(PORT12, ratio18_1, false);
 
 pneumatics Wings = pneumatics(Brain.ThreeWirePort.A);
