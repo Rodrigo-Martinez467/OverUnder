@@ -6,8 +6,8 @@ void topRightOrBottomLeftSkills() {
 	// Catapult.spin(fwd);
 	repeat( 4 ) {
 		Drivetrain.setDriveVelocity(80.0, percent);
-		Intake.setVelocity(80.0, percent);
-		Intake.spin(fwd);
+		Intake.setVelocity(40.0, percent);
+		Intake.spin(reverse);
 		wait(5, sec);
 
 		repeat( 3 ) {

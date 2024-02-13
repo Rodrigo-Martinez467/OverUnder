@@ -78,8 +78,8 @@ void topRightOrBottomLeft() {
 }
 
 void preAutonomous(void) {
-	config = TOP_LEFT_BOTTOM_RIGHT;
-	skills = false;
+	config = TOP_RIGHT_BOTTOM_LEFT;
+	skills = true;
 
 	tryCloseWings();
 
