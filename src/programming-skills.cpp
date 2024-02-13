@@ -3,27 +3,29 @@
 using namespace vex;
 
 void topRightOrBottomLeftSkills() {
-	Catapult.spin(fwd);
-	// repeat( 4 ) {
-	// 	Drivetrain.setDriveVelocity(80.0, percent);
-	// 	wait(5, sec);
+	// Catapult.spin(fwd);
+	repeat( 4 ) {
+		Drivetrain.setDriveVelocity(80.0, percent);
+		Intake.setVelocity(80.0, percent);
+		Intake.spin(fwd);
+		wait(5, sec);
 
-	// 	repeat( 3 ) {
-	// 		Controller.rumble("-");
-	// 		wait(1, sec);
-	// 	}
+		repeat( 3 ) {
+			Controller.rumble("-");
+			wait(1, sec);
+		}
 
-	// 	Drivetrain.driveFor(fwd, 45, inches, false);
-	// 	wait(0.5, sec);
-	// 	Drivetrain.setDriveVelocity(40.0, percent);
-	// 	waitUntil(Drivetrain.isDone());
-	// 	Drivetrain.driveFor(reverse, 45, inches);
-	// }
-	// Controller.rumble("...");
+		Drivetrain.driveFor(fwd, 45, inches, false);
+		wait(0.5, sec);
+		Drivetrain.setDriveVelocity(40.0, percent);
+		waitUntil(Drivetrain.isDone());
+		Drivetrain.driveFor(reverse, 45, inches);
+	}
+	Controller.rumble("...");
 
-	// Drivetrain.driveFor(40, inches);
-	// Drivetrain.turnFor(40, deg);
-	// Drivetrain.driveFor(20, inches);
+	Drivetrain.driveFor(40, inches);
+	Drivetrain.turnFor(40, deg);
+	Drivetrain.driveFor(20, inches);
 }
 
 void topLeftOrBottomRightSkills() {
